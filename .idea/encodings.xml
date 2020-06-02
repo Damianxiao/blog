@@ -3,10 +3,10 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-16" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/css/prism.css" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/static/css/prism.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/css/typo.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/images/avatar.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/images/indexPicture.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/images/indexpicture.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/images/markdown文章资源/600165-20170121165947968-314903197.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/images/markdown文章资源/600165-20170121170247156-1219352477.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/images/markdown文章资源/600165-20170121170255531-442290753.png" charset="GBK" />
@@ -57,7 +57,6 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/editormd/fonts/fontawesome-webfont.ttf" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/editormd/fonts/fontawesome-webfont.woff" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/editormd/fonts/fontawesome-webfont.woff2" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/prism.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/prism.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/tocbot/tocbot.js" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/lib/tocbot/tocbot.min.js" charset="GBK" />
