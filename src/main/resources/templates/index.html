@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<title>首页</title>
+<head th:replace="_fragment  :: head(~{ ::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <title>博客详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/prism.css" th:href="@{/css/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <title>博客</title>
+</head>
+<body>
+<nav th:replace="_fragment ::  menu(1)" class="ui attached segment m-shadow-small ">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item ">大狗子的博客</h2>
+            <a href="#" class="m-item item m-mobile-hide"><i class="heart icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="box icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+            <div class="m-item right item m-mobile-hide ">
+                <div class="ui  icon input">
+                    <input type="text" placeholder="搜索...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--首页图片-->
+<div class="m-back-pic" style="width: 100%;height: 600px;margin: 0">
+    <img th:src="@{/images/indexPicture.jpg}" src="https://w.wallhaven.cc/full/2e/wallhaven-2e8e8m.jpg" alt=""
+         class="ui m-background image"
+         style="width: 100%;height: 100%">
+    <div class="m-back-content" align="center">
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment" align="right">
+            <h1 class="m-white m-text-title m-text-thin">大狗的博客</h1>
+        </div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment" align="center">
+            <button id="angle-button" class="ui circular facebook icon button">
+                <i class=" angle down icon big"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<!--中间内容-->
+<div class="m-padded-tb-large">
+    <div class="ui container ">
+        <div id="page-content" class="ui stackable grid">
+            <!--左边的文章内容区-->
+            <div class="twelve wide column">
+                <div class="ui vertical segment ">
+                    <!--最新推荐-->
+                    <div class=" m-container-small  m-opacity-mini ">
+                        <div class="ui secondary segment">
+
+                            <div class="header teal center aligned m-text-thick" align="center">
+                                <i class="book icon"></i>
+                                推荐
+                            </div>
+                        </div>
+                    </div>
+                    <!--列表-->
+                    <div class="ui m-container-small m-padded-tb-large ">
+                        <div class="ui secondary segment   m-padded-tb-mini m-opacity-mini"
+                             th:each="blog : ${page.content}">
+                            <div class="ui padded large middle aligned stackable mobile reversed grid">
+                                <!--图片-->
+                                <div class="five wide column m-mobile-hide">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="https://huaban.com/pins/387544651"
+                                             th:src="@{${blog.firstPicture}}" alt="" style="width:220px;height: 130px">
+                                    </a>
+                                </div>
+                                <!--内容-->
+                                <div class="eleven wide column">
+                                    <h3 class="ui header ">
+                                        <a href="#" class="ui label mini red" th:each="tag : ${blog.tags}"
+                                           th:text="${tag.name}">求你了别报错</a>
+                                        <a href="#" class="ui label mini blue"
+                                           th:text="${blog.type.name}">求你了别报错</a>
+                                        <a href="#" class="m-black" th:href="@{/blog/{id}(id=${blog.id})}"
+                                           target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
+                                    </h3>
+                                    <p class=" m-text-content m-margin-tb-max  " th:text="${blog.proFile}">
+                                        深度思考就是不断逼近问题的本质.事实上，任何深度思考前的盲目勤奋,注定都是吃力不讨好的徒劳.在碎片化信息爆炸的当下,在竞争激烈的高阶领域,决胜的关键不仅在于知识的多寡,勤奋的程度如何,更在于是否具备深度思考的能力.</p>
+                                    <!--作者信息-->
+                                    <div class="ui  horizontal link list ">
+                                        <div class="item ">
+                                            <i class="user icon "></i>
+                                        </div>
+                                        <div class="item">
+                                            <div class="content"><a href="#" class="  m-black m-text-content  "
+                                                                    target="_blank">肖正卿</a></div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="clock icon"></i>
+                                        </div>
+                                        <div class="item">
+                                            <div class="content">
+                                                <div class="header"
+                                                     th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">
+                                                    2020-1-1
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon"></i>
+                                        </div>
+                                        <div class="item">
+                                            <div class="content" th:text="${blog.views}">1</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--右边的归纳区-->
+            <div class="four wide column  m-opacity-mini ">
+                <div class="ui container m-padded-tb-small">
+                    <div class="ui segment">
+                        <div class="ui teal ribbon label"><i class="tags icon"></i>文章分类</div>
+                        <div class="ui vertical link menu">
+                            <div class="ui segment" th:each="type : ${types}">
+                                <li>
+                                    <a href="#" target="_blank" th:href="@{/types/{id}(id=${type.id})}" th:text="${type.name}" class="m-text-content  m-teal">随笔</a>
+                                    <!--这里使用type中含有的blog对象，用arrayslength 取数组长度拿到文章的篇数-->
+                                    <span class="m-text-content" th:text="${#arrays.length(type.blogs)}">1</span><span
+                                        class="m-text-content">篇</span>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui container m-padded-tb-small">
+                    <div class="ui secondary attached segment">
+                        <div class="ui red ribbon label"><i class="star icon"></i>最新动态</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui attached segments">
+                            <div class="ui segment" th:each="blog,iterStat : ${page.content}"
+                                 th:if="${iterStat.count<6}">
+                                <div class="ui circular label blue mini" th:text="${iterStat.count}">1</div>
+                                <a href="#" class=" m-black" th:href="@{/blog/{id}(id=${blog.id})}"
+                                   target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-padded-tb-small ">
+                    <div class="ui container">
+                        <div class="ui  segment">
+                            <div class="ui teal ribbon label"><i class="phone icon"></i>最近评论(感谢留言!)</div>
+                            <div class="ui link list">
+                                <div class="item"></div>
+                            </div>
+                            <div class="comment" th:each="comment,iterStat : ${comments}" th:if="${iterStat.count<7}">
+                                <div class="ui horizontal link list ">
+                                    <div class="item">
+                                        <img src="../static/images/lillard.png" class="ui avatar image"
+                                             th:src="@{${comment.avatar}}">
+                                    </div>
+                                    <div class="item">
+                                        <div class="m-text-content m-teal " th:if="${comment.admin}"> 博主</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="m-text-content m-black" th:text="${comment.nickname}"
+                                             th:unless="${comment.admin}">Matt
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="m-black" th:text="${comment.content}">太赞了！</div>
+                                    </div>
+                                </div>
+                                <div class="ui divider"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--博客内容-->
+    </div>
+</div>
+<!--置顶图标-->
+<div class="m-padded-tb-large  m-right-bottom m-fixed ">
+    <div id="top-button" href="#" class="ui icon button"><i class="chevron up icon"></i></div>
+</div>
+<!--底部footer-->
+<footer th:replace="_fragment :: footer" class="ui vertical segment ">
+    <!--   center aligned 把所有文本居中-->
+    <div class="ui center aligned container">
+        <!--        把footer的部分分成几个部分总共有十六列-->
+        <div class="ui  divided stackable grid">
+            <div class="three wide column">
+                <img src="../static/images/head.jpg" th:src="@{/images/head.jpg}" class="ui rounded iamge" alt=""
+                     style="width :110px">
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">我的故事(story)</a>
+                    <a href="#" class="item">我的生涯(career)</a>
+                    <a href="#" class="item">我的思考(thinking)</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">qq:1946126897</a>
+                    <a href="#" class="item">电话：15173913110</a>
+                    <a href="#" class="item">邮箱：1946126897@qq.com</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-spaced m-opacity-mini">关于我</h4>
+                <p class="m-text-thin m-opacity-mini">这是我的个人博客，我会在这里分享关于的学习，见解，思考，以及任何东西,Respect.</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2000 - 2020 Designed by X </p>
+    </div>
+</footer>
+<div th:replace="_fragment :: script">
+    <!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--使用jquery获取,menu.toggle是一个标记，使jQuery能够找到这个button的位置-->
+</div>
+
+<script>
+    $('#top-button').click(function () {
+        //0是页面的位置 500是响应的时间
+        $(window).scrollTo(0, 500);
+    })
+    <!--建立一个click事件当点击的时候执行function-->
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+
+    $('#angle-button').click(function () {
+        $(window).scrollTo($('#page-content'), 500);
+    })
+
+</script>
+</body>
+</html>

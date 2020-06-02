@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>后台登录管理</title>
+<head th:replace="_fragment  :: head(~{ ::title})">
+    <meta charset="UTF-8">
+    <!-- 移动设备的浏览备注-->
+    <meta name ="viewport" content="width=device - width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+<div>
+    <div class="ui container center aligned">
+        <div class=" m-container-small m-padded-tb-massive" style="max-width: 30em !important;">
+            <div class="ui container">
+                <div class="ui middle aligned center aligned grid">
+                    <div class="column">
+                        <h2 class="ui teal image header">
+                            <div class="content">
+                                登录你的账号
+                            </div>
+                        </h2>
+                        <!--  使用action -->
+                        <form class="ui large form" action="#" th:action="@{/admin/login}" method="post">
+                            <div class="ui  segment">
+                                <div class="field">
+                                    <div class="ui left icon input">
+                                        <i class="user icon"></i>
+                                        <input type="text" name="username" placeholder="用户名">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui left icon input">
+                                        <i class="lock icon"></i>
+                                        <input type="password" name="password" placeholder="密码">
+                                    </div>
+                                </div>
+                                <button class="ui fluid large teal submit button">登录</button>
+                            </div>
+                            <div class="ui error message"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header"></div>
+                <p th:text="${message}"></p>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<footer >
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+        $('.close')
+            .on('click',function(){
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+    </script>
+</footer>
+</body>
+</html>

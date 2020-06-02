@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragment  :: head(~{ ::title})">
+    <meta charset="UTF-8">
+    <!-- 移动设备的浏览备注-->
+    <meta name ="viewport" content="width=device - width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<title>分类管理</title>
+<body>
+<nav th:replace="admin/_fragment :: menu(2)"  class = "ui inverted attached segment m-padded-tb-mini m-shadow-small"  >
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <!--  使用h2给定一个标签 teal 是颜色 header样式-->
+            <h2 class="ui teal header item ">管理后台</h2>
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active' " ><i class="heart icon"></i>博客</a>
+                <a href="#" class="m-item item active m-mobile-hide" th:classappend="${n==2} ? 'active' " ><i class="box icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active' " ><i class="tags icon"></i>标签</a>
+                    <div class="right m-item  m-mobile-hide menu ">
+                        <div class="ui dropdown item">
+                            <div class="text">
+                                <img src="../../static/images/lillard.png" alt="" class="ui avatar image" >
+                                    A大狗
+                            </div>
+                            <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <a href="#" class="item">注销</a>
+                                </div>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--二级导航-->
+<div class="ui attached pointing  menu">
+    <div class="ui container">
+        <div class=" right menu">
+            <a href="#" th:href="@{/admin/types}" class="item teal active">列表</a>
+            <a href="#" th:href="@{/admin/types/input}" class="item ">发布</a>
+        </div>
+    </div>
+</div>
+<!--中间内容-->
+<div class="m-container-small m-padded-tb-large">
+<!--    container是semantic自带的容器具有最适应的大小-->
+    <div class="ui container">
+<!--                需要提交的内容使用form-->
+        <!--后端通过attitude传过来的message-->
+        <div class=" animated fadeIn">
+            <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <div class="header">提示：</div>
+                <p th:text="${message}">操作成功!</p>
+            </div>
+        </div>
+
+        <table class="ui stacked celled table">
+            <thead>
+            <!--在表格中拿到数据对象,each是循环方法-->
+                <tr >
+                    <th></th>
+                    <th >名称</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tboby>
+                <!--循环-->
+                <tr th:each="type,iterStat: ${page.content}">
+                    <!--数据的页数-->
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${type.name}">清单</td>
+                    <td>
+                        <!--返回一个页面-->
+                        <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui  teal button ">编辑</a>
+                        <a href="#" th:href="@{/admin/types/{id}/delete(id=${type.id})}"  class="ui  red button ">删除</a>
+                    </td>
+                </tr>
+            </tboby>
+            <tfoot>
+            <tr>
+<!--                colspan是合并单元格-->
+                <th colspan="6" >
+                    <div class="ui left floated mini pagination stackable menu" th:if="${page.totalElements>1}">
+                        <a th:href="@{/admin/types(page=${page.number}-1)}"  th:unless="${page.first}" class="item">上一页</a>
+                        <a th:href="@{/admin/types(page=${page.number}+1)}" th:unless="${page.last}" class="item">下一页</a>
+                    </div>
+                    <a href="#" th:href="@{/admin/types/input}" class="ui button mini right floated teal basic">新增</a>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+<!--    使用grid来布局-->
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部footer-->
+<footer th:replace="_fragment :: footer" class ="ui inverted vertical segment m-padded-tb-massive">
+<!--   center aligned 把所有文本居中-->
+    <div class="ui center aligned container">
+<!--        把footer的部分分成几个部分总共有十六列-->
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <img src="../../static/images/head.jpg" class="ui rounded iamge" alt="" style="width :110px" >
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">我的故事(story)</a>
+                    <a href="#" class="item">我的生涯(career)</a>
+                    <a href="#" class="item">我的思考(thinking)</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">qq:1946126897</a>
+                    <a href="#" class="item">电话：15173913110</a>
+                    <a href="#" class="item">邮箱：1946126897@qq.com</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-spaced m-opacity-mini">关于我</h4>
+                <p class="m-text-thin m-opacity-mini">这是我的个人博客，我会在这里分享关于的学习，见解，思考，以及任何东西,Respect.</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2000 - 2020  Designed by X </p>
+    </div>
+</footer>
+<!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--使用jquery获取,menu.toggle是一个标记，使jQuery能够找到这个button的位置-->
+<script>
+<!--建立一个click事件当点击的时候执行function-->
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown();
+
+    $('.close')
+        .click(function(){
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+</script>
+</body>
+</html>

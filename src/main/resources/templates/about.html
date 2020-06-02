@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<title>关于博主</title>
+<head th:replace="_fragment  :: head(~{ ::title})">
+    <meta charset="UTF-8">
+    <!-- 移动设备的浏览备注-->
+    <meta name ="viewport" content="width=device - width,initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>关于我</title>
+</head>
+<body>
+<!--导航-->
+<!--inverted 代表反色 ui标注是引入了semantic ui 的样式 attached 是依附去除圆角-->
+<nav th:replace="_fragment :: menu(5) " class = "ui inverted attached segment m-padded-tb-mini m-shadow-small"  >
+<!--       使用css自定义文件改变样式的大小宽度-->
+    <div class="ui container">
+<!--   将内容放进container容器里-->
+        <!--   ui menu是菜单-->
+        <div class="ui inverted secondary stackable menu">
+            <!--  使用h2给定一个标签 teal 是颜色 header样式-->
+            <h2 class="ui teal header item ">大狗子的博客</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="heart icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="box icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+                <a href="#" class="m-item active item m-mobile-hide"><i class="info icon"></i>关于我</a>
+                    <div class="m-item right item m-mobile-hide ">
+                            <!--  right item代表放置在网址的右侧-->
+                        <div class="ui  icon input">
+                            <input  type = "text" placeholder="搜索...">
+                            <i class="search link icon"></i>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--中间内容-->
+<div class="ui attached segment">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="ten wide column">
+                <h1 class="m-text-thin">大狗子</h1>
+                <div class="ui basic segment"></div>
+                <h3 class="m-text-thin">关于博主</h3>
+                <div class="ui divider"></div>
+                <div class="m-text-content">目前是一名大二学生，坐标湖南邵阳</div>
+                <h3 class="m-text-thin">联系博主</h3>
+                <div class="ui divider"></div>
+                <div class="m-text-content">以下是联系方式</div>
+                <div class="ui vertical menu ">
+                    <a href="#" class="item">qq:1946126897</a>
+                    <a href="#" class="item">电话：15173913110</a>
+                    <a href="#" class="item">
+                        微信
+                        <img class="ui rounded image" th:src="@{/images/QR.png}" src="https://s1.ax1x.com/2020/05/29/tmTaQA.jpg" alt="">
+                    </a>
+                </div>
+            </div>
+           <div class="six wide column">
+               <div class=" m-padded-tb-small animated fadeInRight">
+                   <div class="ui container m-mobile-hide">
+                       <div class="ui card ">
+                           <div class="ui slide masked reveal image">
+                               <img  src="/images/avatar/large/jenny.jpg" th:src="@{/images/head.jpg}" class="visible content " >
+                               <img  src="/images/avatar/large/elliot.jpg"  th:src="@{/images/rhead.jpg}" class="hidden content " >
+                           </div>
+                           <div class="content">
+                               <a class="header">我是A大狗</a>
+                               <div class="meta">
+                                   <span class="m-text-content">一个喜欢鼓捣各种东西的汪。</span>
+                                   <br>
+                                   <span class="m-text-content">这是我的个人博客,我会在这里分享所有我感兴趣的以及有趣的东西,瑞思拜。</span>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
+<!--底部footer-->
+
+<div th:replace="_fragment :: footer" class ="ui vertical attached segment ">
+<!--   center aligned 把所有文本居中-->
+    <div class="ui center aligned container">
+<!--        把footer的部分分成几个部分总共有十六列-->
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2000 - 2020  Designed by X </p>
+    </div>
+</div>
+<!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="semantic/dist/semantic.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--使用jquery获取,menu.toggle是一个标记，使jQuery能够找到这个button的位置-->
+<script>
+<!--建立一个click事件当点击的时候执行function-->
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+$('.qq').popup();
+
+$('.wechatqr').popup({
+    popup:$('.wechat-qr'),
+    on:'click',
+    position:'bottom center',
+});
+
+</script>
+</body>
+</html>

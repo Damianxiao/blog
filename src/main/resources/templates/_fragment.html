@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--使用frag将页面定向的替换-->
+<!--fragment的用法：
+在标签属性上标注  fragment="指定名字作为替换的起始点",在这里使用的是title，即_fragment
+然后在需要替换的页面的标签中：使用th:replace="_fragment :: "
+-->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <title>博客详情</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/prism.css" th:href="@{/css/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+</head>
+<body>
+<!--页面中公共部分都可以放在fragment中进行全局替换-->
+
+<!--定义一个fragment menu传参数 ，可以改变当前导航上图标的active-->
+<nav th:fragment="menu(n)" class="ui attached segment  m-shadow-small  m-opacity-mini" style="margin: 0; padding: 0">
+    <div class="ui container">
+        <div class="ui  secondary stackable menu">
+            <!--当n= 1时则在class中添加 active-->
+            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active' "><i
+                    class="heart icon"></i>首页</a>
+            <a href="#" th:href="@{/types/14}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active' "><i class="box icon"></i>分类</a>
+            <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active' "><i
+                    class="clone icon"></i>归档</a>
+            <a href="#" th:href="@{/about}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active' "><i
+                    class="info icon"></i>关于我</a>
+            <a href="#" th:href="@{https://github.com/Damianxiao/blog/tree/7b6f13780c204c4b54a6849e4df02d785d9b0b56}" target="_blank"
+               class="m-item item m-mobile-hide"><i
+                    class="github icon"></i>github</a>
+            <div class="m-item right item m-mobile-hide ">
+                <!--  right item代表放置在网址的右侧-->
+                <form action="#" th:action="@{/search}" target="_blank" name="search">
+                    <div class="ui  icon input focus">
+                        <input type="text" class="m-text-content " placeholder="搜索..." name="query" th:value="*{query}">
+                        <i onclick="document.forms['search'].submit()" class=" search link icon"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
+        <i class="sidebar icon "></i>
+    </a>
+    <!--置顶图标-->
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer th:fragment="footer" class="ui padded segment " style="margin: 0">
+    <div class="ui center aligned container">
+        <p class=" m-opacity-mini">这是我的个人博客，我会在这里分享关于的学习，见解，思考，以及任何东西,Respect</p>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2000 - 2020 Designed by XZQ </p>
+    </div>
+</footer>
+<div th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script src="../static/lib/prism.js" th:src="@{/lib/prism.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.js" th:src="@{/lib/tocbot/tocbot.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script>
+
+        $('.wechat.button').popup(
+            {
+                popup: $('.wechar-qr'),
+                on: 'click',
+                position: 'left center',
+            }
+        );
+
+
+        //tocbot初始化
+        tocbot.init({
+            // Where to render the table of contents. 在哪里生成目录 最终显示目录的区域
+            tocSelector: '.js-toc',
+            // Where to grab the headings to build the table of contents. 生成目录的源
+            contentSelector: '.js-toc-content',
+            // Which headings to grab inside of the contentSelector element. 表示最多能生成几级目录
+            headingSelector: 'h1, h2, h3',
+        });
+
+        $('toc.button').popup(
+            {
+                popup: $('.toc-container.popup'),
+                on: 'click',
+                position: 'left center'
+            }
+        );
+
+        $('.menu.toggle').click(
+            function () {
+                $('.m-item').toggleClass('m-mobile-hide');
+            }
+        )
+
+        $('.ui.dropdown').dropdown();
+    </script>
+</div>
+<script>
+    $('.wechat.button').popup(
+        {
+            popup: $('.wechar-qr'),
+            on: 'click',
+            position: 'left center',
+        }
+    );
+
+
+    //tocbot初始化
+    tocbot.init({
+        // Where to render the table of contents. 在哪里生成目录 最终显示目录的区域
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents. 生成目录的源
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element. 表示最多能生成几级目录
+        headingSelector: 'h1, h2, h3',
+    });
+
+    $('toc.button').popup(
+        {
+            popup: $('.toc-container.popup'),
+            on: 'click',
+            position: 'left center'
+        }
+    );
+
+    $('.menu.toggle').click(
+        function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        }
+    )
+</script>
+</body>
+</html>
+

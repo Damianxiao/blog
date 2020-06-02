@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--使用frag将页面定向的替换-->
+<!--fragment的用法：
+在标签属性上标注  fragment="指定名字作为替换的起始点",在这里使用的是title，即_fragment
+然后在需要替换的页面的标签中：使用th:replace="_fragment :: "
+-->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <title>后台</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/prism.css" th:href="@{/css/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+</head>
+<body>
+<!--页面中公共部分都可以放在fragment中进行全局替换-->
+
+<!--定义一个fragment menu传参数 ，可以改变当前导航上图标的active-->
+<nav th:fragment="menu(n)" class = "ui inverted attached segment m-padded-tb-mini m-shadow-small"  >
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item ">后台管理</h2>
+            <!--当n= 1时则在class中添加 active-->
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active' "><i class="heart icon"></i>博客</a>
+            <a href="#" th:href="@{/admin/types}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active' "><i class="box icon"></i>分类</a>
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active' "><i class="tags icon"></i>标签</a>
+            <div class="right m-item  m-mobile-hide menu ">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="../static/images/lillard.png"  th:src="@{/images/lillard.png}" alt="" class="ui avatar image ">
+                        <span th:text="${session.user.nickname}"></span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<footer th:fragment="footer" class ="ui inverted vertical segment m-padded-tb-massive">
+    <!--   center aligned 把所有文本居中-->
+    <div class="ui center aligned container">
+        <!--        把footer的部分分成几个部分总共有十六列-->
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <img src="../static/images/head.jpg" th:src="@{/images/head.jpg}" class="ui rounded images" alt="" style="width :110px" >
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">我的故事(story)</a>
+                    <a href="#" class="item">我的生涯(career)</a>
+                    <a href="#" class="item">我的思考(thinking)</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">qq:1946126897</a>
+                    <a href="#" class="item">电话：15173913110</a>
+                    <a href="#" class="item">邮箱：1946126897@qq.com</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-spaced m-opacity-mini">关于我</h4>
+                <p class="m-text-thin m-opacity-mini">这是我的个人博客，我会在这里分享关于的学习，见解，思考，以及任何东西,Respect.</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2000 - 2020  Designed by XZQ</p>
+    </div>
+</footer>
+<div th:fragment="script">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+</div>
+</body>
+</html>

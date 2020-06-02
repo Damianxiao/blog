@@ -1,0 +1,261 @@
+body{
+    background-image: url("../images/eb44537c33dccc9ccab33f25a9f54584.jpg");
+    background-attachment:fixed;
+    background-size: 100%;
+    no-repeat: center top;
+    height: 100%;
+    width: 100%;
+}
+/*picture*/
+.m-picture-massive{
+    width: 300px;
+}
+
+
+.m-back-content{
+    width: 100%;
+    height: 600px;
+    line-height: 50px;
+    padding-left: 6px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+.m-background{
+    object-fit: cover;
+}
+
+.m-back-pic {
+    display: block;
+    margin: 10px auto 0 0;
+    position: relative;
+    overflow: hidden;
+}
+/*position'*/
+.p-right{
+    position:absolute !important;
+    top:10px !important;
+    right:10px !important;
+}
+
+.p-right-fixed{
+    position:absolute !important;
+    top:2px !important;
+    right:10px !important;
+}
+
+
+
+
+/*container*/
+
+.m-container-tiny{
+    height: 60px !important;
+    margin:auto !important;
+}
+
+.m-container-small{
+    max-width: 60em !important;
+    margin:auto !important;
+}
+
+.m-container-large{
+    max-width: 90em !important;
+    margin:auto !important;
+}
+
+.m-container-max{
+    max-width: max-content !important;
+    margin:fill !important;
+}
+
+
+/*padded */
+
+.m-padded {
+    padding: 1em !important;
+}
+
+.m-padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em ! important;
+}
+.m-padded-tb-small {
+    padding-top: 1em !important;
+    padding-bottom: 1em ! important;
+}
+.m-padded-tb-middle{
+    padding-top: 2em !important;
+    padding-bottom: 2em ! important; :
+}
+.m-padded-tb-large{
+    padding-top: 3em !important;
+    padding-bottom: 3em ! important; :
+}
+.m-padded-tb-big{
+    padding-top: 4em !important;
+    padding-bottom: 4em ! important; :
+}
+.m-padded-tb-massive{
+    padding-top: 5em !important;
+    padding-bottom: 5em ! important ;
+}
+
+.m-padded-lr{
+    padding-left: 0em !important;
+    padding-right: 0em!important;
+}
+
+/*外部间距*/
+
+.m-margin-tb-tiny{
+    margin-top: 0.2em !important;
+    margin-bottom: 0.2em  !important;
+}
+.m-margin-tb-small{
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em  !important;
+}
+.m-margin-tb-large{
+    margin-top:1em !important;
+    margin-bottom:1em !important;
+}
+.m-margin-tb-big{
+    margin-top:3em !important;
+    margin-bottom:3em !important;
+
+}
+
+/*text 文本设置*/
+
+
+.max-title{
+
+}
+
+
+.m-white{
+    color: azure;
+}
+
+.m-text-title{
+    font-style: oblique;
+    font-weight: 900 !important;
+    letter-spacing: 2px !important;
+    line-height: 4 !important;
+    font-size: 40px;
+}
+
+.m-text-thin{
+    font-weight: 300 !important;
+}
+
+.m-text-spaced{
+    letter-spacing: 1px  !important;
+}
+.m-text-line{
+    line-height: 1.8;
+}
+
+.m-text-italic{
+    ine-height: 1.8;
+    font-style:italic  !important;
+}
+
+.m-text-content {
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8;
+}
+
+.m-opacity-full{
+    opacity: 0 !important;;
+}
+.m-opacity-mini{
+    opacity: 0.95 !important;
+}
+.m-opacity{
+    opacity: 0.7 !important;
+}
+.m-text-thick{
+    font-weight: 800 !important;
+}
+
+
+
+/*position*/
+.m-right-bottom{
+    position: fixed !important;
+    bottom: 0;
+    right: 50px;
+}
+
+
+/*让组件浮在表层*/
+.m-fixed{
+    position: fixed !important;
+    z-index: 10 !important;
+}
+
+.m-top-right-index{
+    position: fixed !important;
+    top:10em;
+    right:10em;
+}
+
+.m-top-right{
+    position: absolute !important;
+    top:0;
+    right:0;
+}
+/*------display--------*/
+.m-inline-block {
+    display: inline-block !important;
+}
+.m-width{
+    width: 10em !important;
+}
+/*shadow*/
+.m-shadow-small{
+    box-shadow:0 4px 8px rgba(0,0,0,0.2) !important;
+}
+/*    color*/
+
+
+.m-black{
+    color:  #333333  !important;
+ }
+
+.m-teal{
+    color: #00b5ad !important;
+}
+
+/*检测手机端：
+当屏幕小于768像素*/
+@media screen and (max-width: 768px) {
+    .m-mobile-hide{
+        display:none!important;
+    }
+    .m-padded-lr-responsive{
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+     }
+    .m-mobile-wide{
+        width:100%; !important;
+    }
+}
+/*电脑端隐藏*/
+@media screen and (min-width: 768px){
+    .m-desktop-hide{
+
+        display:none !important;
+    }
+}
+
+/*区域*/
+
+
+
+
+/*需要引入css*/

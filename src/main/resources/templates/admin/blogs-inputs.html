@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<title>博客发布</title>
+<head th:replace="admin/_fragment  :: head(~{ ::title})">
+    <meta charset="UTF-8">
+    <!-- 移动设备的浏览备注-->
+    <meta name ="viewport" content="width=device - width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+
+</head>
+<body>
+<!--导航-->
+<!--inverted 代表反色 ui标注是引入了semantic ui 的样式 attached 是依附去除圆角-->
+<nav th:replace="admin/_fragment :: menu(1)" class = "ui inverted attached segment m-padded-tb-mini m-shadow-small"  >
+<!--       使用css自定义文件改变样式的大小宽度-->
+    <div class="ui container">
+<!--   将内容放进container容器里-->
+        <!--   ui menu是菜单-->
+        <div class="ui inverted secondary stackable menu">
+            <!--  使用h2给定一个标签 teal 是颜色 header样式-->
+            <h2 class="ui teal header item ">管理后台</h2>
+                <a href="#" class="m-item active item m-mobile-hide"><i class="heart icon"></i>博客</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="box icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                    <div class="right m-item  m-mobile-hide menu ">
+                        <div class="ui dropdown item">
+                            <div class="text">
+                                <img src="../../static/images/lillard.png" alt="" class="ui avatar image" >
+                                    A大狗
+                            </div>
+                            <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <a href="#" class="item">注销</a>
+                                </div>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<!--二级导航-->
+<div class="ui attached menu m-opacity-mini">
+    <div class="ui container">
+        <div class="ui right menu">
+            <a href="#" th:href="@{/admin/blogs}" class="item ">列表</a>
+            <a href="#" th:href="@{/admin/blogs/input}" class="item teal active ">发布</a>
+        </div>
+    </div>
+</div>
+<!--中间内容-->
+<div class="m-padded-tb-large">
+<!--    container是semantic自带的容器具有最适应的大小-->
+    <div class="ui container m-opacity-mini">
+        <form id="blog-form" action="#" method="post"  class="ui form" th:action=" @{/admin/blogs}"  th:object="${blog}">
+            <!--由于存在保存和提交的区别，不能直接使用submit来提交表单
+            需要添加一个隐藏域来界定 boolean  published 的状态-->
+            <input type="hidden" name="published" th:value="*{published}" >
+            <!--这一个隐含域 将object的id 存放在这里 ，修改过程中再次提交则会将这个id 传到controller 中的  方法中-->
+            <input type="hidden" name ="id"  th:value="*{id}">
+            <div class="field required ">
+                <div class="ui left labeled input ">
+                    <div class="ui basic teal compact selection dropdown label ">标题</div>
+                    <input type="text" name="title" placeholder="标题" th:value="*{title}" >
+                </div>
+            </div>
+            <div class="field required ">
+                <div  id="md-content"  style="z-index: 1 !important;">
+                   <textarea name="content" style="display:none;" th:text="*{content}">
+</textarea>
+                </div>
+            </div>
+            <div class="field required ">
+                <div class="ui left labeled input ">
+                    <div class="ui basic teal compact selection dropdown label ">图片地址</div>
+                    <input type="text" name="firstPicture" placeholder="首页图片" th:value="*{firstPicture}" >
+                </div>
+            </div>
+            <div class="two fields">
+                <div class=" field required">
+                    <div class="ui left labeled input">
+                        <a href="#" class="ui compact teal basic label" >分类</a>
+                        <div class="ui  search selection dropdown">
+                            <input type="hidden" name="type.id" th:value="*{type}!=null ? *{type.id}">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">分类</div>
+                            <div class="menu">
+                                <!--在controller中已经调用了，在这里使用遍历调用所有的对象-->
+                                <div th:each="type : ${types}"  th:data-value="${type.id}" th:text="${type.name}" class="item" data-value="1">分类</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left labeled input">
+                        <a href="#" class="ui compact teal basic label">标签</a>
+                        <div class="ui  multiple search selection dropdown">
+                            <input type="hidden" name="tagIds" th:value="*{tagIds}">
+                            <i class="dropdown icon"></i>
+                            <div class="default  text">标签</div>
+                            <div class="menu">
+                                <div th:each="tag : ${tags}" th:data-value="${tag.id}" th:text="${tag.name}" class="item" data-value="1">javasrcipt</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="required field">
+                <textarea name="proFile" th:text="*{proFile}" placeholder="博客描述..." maxlength="200"></textarea>
+            </div>
+            <div class="ui container">
+            </div>
+            <div class="ui error message"> </div>
+            <div class="ui right aligned container">
+    <!--            window.history.go(-1)代表返回上一个页面-->
+                <button type="button" onclick=" window.history.go(-1)" class="ui teal button">返回</button>
+                <!--在js中描述，把两个button区分开来，save和pulish-->
+                <button  type="button" id="save-btn" class="ui black button ">保存</button>
+                <button  type="button" id="publish-btn" class="ui  pink button ">发布</button>
+            </div>
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<!--    使用grid来布局-->
+</div>
+<!--底部footer-->
+<footer  th:replace="admin/_fragment :: footer" class ="ui inverted vertical segment m-padded-tb-massive ">
+<!--   center aligned 把所有文本居中-->
+    <div class="ui center aligned container">
+<!--        把footer的部分分成几个部分总共有十六列-->
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <img src="../../static/images/head.jpg" class="ui rounded iamge" alt="" style="width :110px" >
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">我的故事(story)</a>
+                    <a href="#" class="item">我的生涯(career)</a>
+                    <a href="#" class="item">我的思考(thinking)</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">qq:1946126897</a>
+                    <a href="#" class="item">电话：15173913110</a>
+                    <a href="#" class="item">邮箱：1946126897@qq.com</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-spaced m-opacity-mini">关于我</h4>
+                <p class="m-text-thin m-opacity-mini">这是我的个人博客，我会在这里分享关于的学习，见解，思考，以及任何东西,Respect.</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright © 2000 - 2020  Designed by X </p>
+    </div>
+</footer>
+<div th:replace="admin/_fragment :: script"></div>
+<!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+<!--使用jquery获取,menu.toggle是一个标记，使jQuery能够找到这个button的位置-->
+<script>
+<!--    初始化md编辑器-->
+    var contentEditor;
+
+    $(function() {
+        contentEditor = editormd("md-content", {
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+          /*  path    : "../static/lib/editormd/lib/"*/
+            path:  "/lib/editormd/lib/"
+        });
+    });
+
+<!--建立一个click事件当点击的时候执行function-->
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown();
+
+    $('.ui.form').form({
+        fields:{
+            title:{
+                identifier: 'title',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入内容'
+                }]
+            },
+            content:{
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客内容'
+                }]
+            },
+            typeId:{
+                identifier: 'typeId',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题：请输入博客分类'
+                }]
+            },
+        }
+    });
+    //使用click触发，当点击save保存使published的val为false
+    $('#save-btn').click(function (){
+        $('[name="published" ]').val(false);
+        $('#blog-form').submit();
+    });
+    //    同理当publish
+    $('#publish-btn').click(function (){
+        $('[name="published" ]').val(true);
+          $('#blog-form').submit();
+    });
+</script>
+</body>
+</html>
