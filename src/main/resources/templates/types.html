@@ -114,6 +114,13 @@
                     </div>
                 </div>
             </div>
+            <div class="ui left floated mini pagination stackable menu" th:if="${page.totalElements>1}">
+                <!--定义一个page方法的处理，因为如果使用href的方法,直接调用的是blogs中的方法
+               传递的值只能有网页的分页的页码,
+               ，上方查询数据的方法并不能传递过来-->
+                <a th:href="@{/types(page=${page.number}-1)}"  th:unless="${page.first}" class="item">上一页</a>
+                <a th:href="@{/types(page=${page.number}+1)}" th:unless="${page.last}" class="item">下一页</a>
+            </div>
         </div>
     </div>
 </div>

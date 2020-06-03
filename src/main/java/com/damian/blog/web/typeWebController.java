@@ -23,7 +23,7 @@ public class typeWebController {
 private blogService blogService;
 
     @GetMapping("/types/{id}")
-    public String  types(@PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String  types(@PageableDefault(size = 100, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          @PathVariable  Long id, Model model){
         BlogQuery blogQuery = new BlogQuery();
 //        这里传给的是type的id，每一个文章blog都对应一个id，若id一样则这些blog属于同一个分类
