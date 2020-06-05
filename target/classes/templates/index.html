@@ -4,7 +4,7 @@
 <title>首页</title>
 <head th:replace="_fragment  :: head(~{ ::title})">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>博客详情</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
@@ -37,19 +37,20 @@
     </a>
 </nav>
 <!--首页图片-->
-<div class="m-back-pic animated slideInUp" style="width: 100%;height: 600px;margin: 0">
+<div class="m-back-pic animated slideInUp stackable" style="width: auto;height: 600px;margin: -2px;padding: 0;border: 0;">
     <img th:src="@{/images/indexpicture.jpg}" src="https://w.wallhaven.cc/full/2e/wallhaven-2e8e8m.jpg" alt=""
          class="ui m-background image"
          style="width: 100%;height: 100%">
     <div class="m-back-content" align="center">
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment" align="right">
-            <h1 class="m-white m-text-title m-text-thin">大狗的博客</h1>
+        <div class="ui basic segment">
         </div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment" ></div>
+        <div class="ui basic segment" align="right">
+            <h1 class="m-white m-text-title m-text-thin" style="margin: 0">大狗的博客</h1>
+        </div>
+        <div class="ui basic segment"></div>
         <div class="ui basic segment"></div>
         <div class="ui basic segment" align="center">
             <button id="angle-button" class="ui circular facebook icon button">
@@ -105,8 +106,7 @@
                                             <i class="user icon "></i>
                                         </div>
                                         <div class="item">
-                                            <div class="content"><a href="#" class="  m-black m-text-content  "
-                                                                    target="_blank">肖正卿</a></div>
+                                            <div class="content"><a href="#" th:href="@{/about}" class="  m-black m-text-content  ">肖正卿</a></div>
                                         </div>
                                         <div class="item">
                                             <i class="clock icon"></i>
@@ -134,11 +134,22 @@
             </div>
             <!--右边的归纳区-->
             <div class="four wide column  m-opacity-mini ">
-                <div class="ui container m-padded-tb-small">
+                <div class="ui container  m-padded-tb-small">
+                    <div class="ui segment">
+                        <div class="ui blue ribbon label"><i class="send icon"></i>通知</div>
+                        <div class="m-text-content">
+                            本博客将由博主长期维护更新
+                            <br>欢迎访问!
+                        </div>
+                        <div class="ui divider"></div>
+                        <div class="content m-text-italic">最后更新于 : 2020-6-5</div>
+                    </div>
+                </div>
+                <div class="ui container">
                     <div class="ui segment">
                         <div class="ui teal ribbon label"><i class="tags icon"></i>文章分类</div>
-                        <div class="ui vertical link menu">
-                            <div class="ui segment" th:each="type : ${types}">
+                        <div class="ui segments">
+                            <div class="ui segment padding fluid" th:each="type : ${types}">
                                 <li>
                                     <a href="#" target="_blank" th:href="@{/types/{id}(id=${type.id})}" th:text="${type.name}" class="m-text-content  m-teal">随笔</a>
                                     <!--这里使用type中含有的blog对象，用arrayslength 取数组长度拿到文章的篇数-->
@@ -158,7 +169,7 @@
                             <div class="ui segment" th:each="blog,iterStat : ${page.content}"
                                  th:if="${iterStat.count<6}">
                                 <div class="ui circular label blue mini" th:text="${iterStat.count}">1</div>
-                                <a href="#" class=" m-black" th:href="@{/blog/{id}(id=${blog.id})}"
+                                <a href="#" class=" m-black m-text-content" th:href="@{/blog/{id}(id=${blog.id})}"
                                    target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
                             </div>
                         </div>
@@ -166,33 +177,50 @@
                 </div>
                 <div class="m-padded-tb-small ">
                     <div class="ui container">
-                        <div class="ui  segment">
-                            <div class="ui teal ribbon label"><i class="phone icon"></i>最近评论(感谢留言!)</div>
-                            <div class="ui link list">
-                                <div class="item"></div>
+                    <div class="ui  segment">
+                        <div class="ui teal ribbon label"><i class="comment icon"></i>最近评论(感谢留言!)</div>
+                        <div class="ui link list">
+                            <div class="item"></div>
+                        </div>
+                        <div class="comment">
+                            <div class="ui horizontal link list ">
+                                <div class="item">
+                                    <img th:href="@{https://s1.ax1x.com/2020/05/25/tCYPz9.jpg}" src="https://s1.ax1x.com/2020/05/25/tCYPz9.jpg" class="ui avatar image">
+                                </div>
+                                <div class="item">
+                                    <div class="m-text-content m-teal"> 博主</div>
+                                </div>
+                                <div class="item">
+                                    <div class="ui label red small" th:text="置顶" >置顶</div>
+                                </div>
+                                <div class="item">
+                                    <div class="m-black m-text-content" th:text="谢谢留言！">谢谢留言！</div>
+                                </div>
                             </div>
-                            <div class="comment" th:each="comment,iterStat : ${comments}" th:if="${iterStat.count<7}">
-                                <div class="ui horizontal link list ">
-                                    <div class="item">
-                                        <img src="../static/images/lillard.png" class="ui avatar image"
-                                             th:src="@{${comment.avatar}}">
-                                    </div>
-                                    <div class="item">
-                                        <div class="m-text-content m-teal " th:if="${comment.admin}"> 博主</div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="m-text-content m-black" th:text="${comment.nickname}"
-                                             th:unless="${comment.admin}">Matt
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="m-black" th:text="${comment.content}">太赞了！</div>
+                            <div class="ui divider"></div>
+                        </div>
+                        <div class="comment" th:each="comment,iterStat : ${comments}" th:if="${iterStat.count<8}">
+                            <div class="ui horizontal link list ">
+                                <div class="item">
+                                    <img src="../static/images/lillard.png" class="ui avatar image"
+                                         th:src="@{${comment.avatar}}">
+                                </div>
+                                <div class="item">
+                                    <div class="m-text-content m-teal " th:if="${comment.admin}"> 博主</div>
+                                </div>
+                                <div class="item">
+                                    <div class="m-text-content m-black" th:text="${comment.nickname}"
+                                         th:unless="${comment.admin}">Matt
                                     </div>
                                 </div>
-                                <div class="ui divider"></div>
+                                <div class="item">
+                                    <div class="m-black" th:text="${comment.content}">太赞了！</div>
+                                </div>
                             </div>
+                            <div class="ui divider"></div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -201,7 +229,7 @@
 </div>
 <!--置顶图标-->
 <div class="m-padded-tb-large  m-right-bottom m-fixed ">
-    <div id="top-button" href="#" class="ui icon button"><i class="chevron up icon"></i></div>
+    <div id="top-button" href="#" class="ui icon button "><i class="chevron up icon"></i></div>
 </div>
 <!--底部footer-->
 <footer th:replace="_fragment :: footer" class="ui vertical segment ">

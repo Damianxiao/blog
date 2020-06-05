@@ -53,7 +53,7 @@
             <div class="ui fluid vertical menu">
                 <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${item.value}">
           <span>
-            <span class="m-teal" th:text="${blog.title}">关于刻意练习的清单</span>
+            <span class="m-teal m-text-content" th:text="${blog.title}">关于刻意练习的清单</span>
              <span class="header"
                   th:text="${#dates.format(blog.updateTime,'MM-dd')}">2020-1-1</span>
           </span>

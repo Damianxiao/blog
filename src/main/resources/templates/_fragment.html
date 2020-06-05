@@ -7,7 +7,7 @@
 -->
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>博客详情</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
@@ -20,8 +20,8 @@
 <!--页面中公共部分都可以放在fragment中进行全局替换-->
 
 <!--定义一个fragment menu传参数 ，可以改变当前导航上图标的active-->
-<nav th:fragment="menu(n)" class="ui attached segment  m-shadow-small  m-opacity-mini" style="margin: 0; padding: 0">
-    <div class="ui container">
+<nav th:fragment="menu(n)"  class="ui segment  m-shadow-small"   style="margin: 0; padding: 0;border: 0"  >
+    <div class="ui container m-mobile-hide" th:classappend="${n==1} ? 'inverted' ">
         <div class="ui  secondary stackable menu">
             <!--当n= 1时则在class中添加 active-->
             <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active' "><i
@@ -38,17 +38,46 @@
                 <!--  right item代表放置在网址的右侧-->
                 <form action="#" th:action="@{/search}" target="_blank" name="search">
                     <div class="ui  icon input focus">
-                        <input type="text" class="m-text-content " placeholder="搜索..." name="query" th:value="*{query}">
+                        <input type="text" class="m-text-content " placeholder="输入内容进行搜索吧" name="query" th:value="*{query}">
                         <i onclick="document.forms['search'].submit()" class=" search link icon"></i>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <a href="#" class="ui  menu toggle button icon black m-top-right m-desktop-hide">
-        <i class="sidebar icon "></i>
-    </a>
-    <!--置顶图标-->
+        <div class="ui  menu m-desktop-hide" style="margin: -2px;border: 0;padded:0">
+            <div  class="ui  item ">
+                <a href="#" id="side-bar" ><i class=" sidebar icon" style="color: #3b5998"></i></a>
+                <!--导航栏-->
+            </div>
+            <div class="item">
+                <!--  right item代表放置在网址的右侧-->
+                <form action="#" th:action="@{/search}" target="_blank" name="search" >
+                    <div class="ui icon input focus">
+                        <input type="text" class="m-text-content" placeholder="输入内容进行搜索吧" name="query" th:value="*{query}" >
+                        <i onclick="document.forms['search'].submit()" class=" search link icon"></i>
+                    </div>
+                </form>
+            </div>
+            <div class="right item">
+                <a href="#"  th:href="@{/about}">
+                    <img th:src="@{/images/rhead.jpg}"  class="ui avatar image" src="" alt="">
+                </a>
+            </div>
+        </div>
+    <div  id="menu-list" class="ui attached segment m-mobile-hide m-desktop-hide" th:classappend="${n==1} ? 'inverted' "  style="margin: -1px;border: 0">
+        <div  class="ui vertical fluid menu " th:classappend="${n==1} ? 'inverted' " style="margin: -1px;border: 0">
+            <!--当n= 1时则在class中添加 active-->
+            <a href="#" th:href="@{/}" class="m-item item  " th:classappend="${n==1} ? 'active' "><i
+                    class="heart icon"></i>首页</a>
+            <a href="#" th:href="@{/types/14}" class="m-item item " th:classappend="${n==2} ? 'active' "><i class="box icon"></i>分类</a>
+            <a href="#" th:href="@{/archives}" class="m-item item  " th:classappend="${n==3} ? 'active' "><i
+                    class="clone icon"></i>归档</a>
+            <a href="#" th:href="@{/about}" class="m-item item " th:classappend="${n==4} ? 'active' "><i
+                    class="info icon"></i>关于我</a>
+            <a href="#" th:href="@{https://github.com/Damianxiao/blog}" target="_blank" class="m-item item "><i class="github icon"></i>github</a>
+        </div>
+    </div>
 </nav>
 <br>
 <br>
@@ -86,16 +115,6 @@
     <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
     <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
     <script>
-
-        $('.wechat.button').popup(
-            {
-                popup: $('.wechar-qr'),
-                on: 'click',
-                position: 'left center',
-            }
-        );
-
-
         //tocbot初始化
         tocbot.init({
             // Where to render the table of contents. 在哪里生成目录 最终显示目录的区域
@@ -114,9 +133,29 @@
             }
         );
 
-        $('.menu.toggle').click(
+        $('.wechat.button').popup(
+            {
+                popup: $('.wechar-qr'),
+                on: 'click',
+                position: 'left center',
+            }
+        );
+
+
+
+        //tocbot初始化
+        tocbot.init({
+            // Where to render the table of contents. 在哪里生成目录 最终显示目录的区域
+            tocSelector: '.js-toc',
+            // Where to grab the headings to build the table of contents. 生成目录的源
+            contentSelector: '.js-toc-content',
+            // Which headings to grab inside of the contentSelector element. 表示最多能生成几级目录
+            headingSelector: 'h1, h2, h3',
+        });
+
+        $('#side-bar').click(
             function () {
-                $('.m-item').toggleClass('m-mobile-hide');
+                $('#menu-list').toggleClass('m-mobile-hide');
             }
         )
 
@@ -131,7 +170,6 @@
             position: 'left center',
         }
     );
-
 
     //tocbot初始化
     tocbot.init({
@@ -151,11 +189,6 @@
         }
     );
 
-    $('.menu.toggle').click(
-        function () {
-            $('.m-item').toggleClass('m-mobile-hide');
-        }
-    )
 </script>
 </body>
 </html>

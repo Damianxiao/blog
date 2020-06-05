@@ -22,6 +22,11 @@ body{
     bottom: 0px;
 }
 
+/*消除缝隙*/
+.wrap{
+    font-size: 0;
+}
+
 .m-background{
     object-fit: cover;
 }
@@ -31,8 +36,17 @@ body{
     margin: 10px auto 0 0;
     position: relative;
     overflow: hidden;
+    z-index: 2;
 }
 /*position'*/
+
+.m-float{
+    display: block !important;
+    position: absolute !important;
+    /*z-index代表表层的级别，越大则越在上层*/
+    z-index: 9999 !important;
+}
+
 .p-right{
     position:absolute !important;
     top:10px !important;
@@ -186,16 +200,16 @@ body{
 
 /*position*/
 .m-right-bottom{
-    position: fixed !important;
-    bottom: 0;
-    right: 50px;
+    position: fixed ;
+    bottom: 10px !important;
+    right: 10px !important;
 }
 
 
 /*让组件浮在表层*/
 .m-fixed{
     position: fixed !important;
-    z-index: 10 !important;
+    z-index: 1 !important;
 }
 
 .m-top-right-index{

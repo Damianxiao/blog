@@ -43,7 +43,7 @@
 <!--中间内容-->
 <div class="ui attached segment">
     <div class="ui container">
-        <div class="ui grid">
+        <div class="ui  stackable grid">
             <div class="ten wide column">
                 <h1 class="m-text-thin">大狗子</h1>
                 <div class="ui basic segment"></div>
@@ -65,7 +65,7 @@
            <div class="six wide column">
                <div class=" m-padded-tb-small animated fadeInRight">
                    <div class="ui container m-mobile-hide">
-                       <div class="ui card ">
+                       <div class="ui card stackable ">
                            <div class="ui slide masked reveal image">
                                <img  src="/images/avatar/large/jenny.jpg" th:src="@{/images/head.jpg}" class="visible content " >
                                <img  src="/images/avatar/large/elliot.jpg"  th:src="@{/images/rhead.jpg}" class="hidden content " >
@@ -95,6 +95,7 @@
     </div>
 </div>
 <!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+<div th:replace="_fragment :: script">
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -116,5 +117,6 @@ $('.wechatqr').popup({
 });
 
 </script>
+</div>
 </body>
 </html>
