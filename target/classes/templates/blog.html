@@ -59,40 +59,34 @@
                                 <a class="section">
                                     <div class="item left aligned  m-black">博客详细</div>
                                 </a>
-                                <div class="ui  horizontal link list ">
-                                    <div class="item ">
-                                    </div>
-                                    <div class="item">
-                                        <i class="clock icon"></i>
-                                    </div>
-                                    <div class="item">
-                                        <div class="content">
-                                            <div th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-1-1</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="eye icon"></i>
-                                    </div>
-                                    <div class="item">
-                                        <div class="content " th:text="${blog.views}">1</div>
-                                    </div>
-                                    <div class="item">
-                                    </div>
-                                    <div class="item">
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="ui attached segment m-padded-tb-middle m-text-content">
-                    <div class="ui blue ribbon label massive"  th:text="${blog.title}">简介</div>
+                    <div class="ui header"  th:text="${blog.title}">简介</div>
                     <!--            content-->
                     <div class="  m-padded-lr-responsive typo typo-selection js-toc-content  m-text-content"
                          th:utext="${blog.content}">
                     </div>
                     <div class="ui horizontal divider red">正文结束</div>
+                    <div class="ui  horizontal link list ">
+                        <div class="item">
+                            <span>发布于:  </span>
+                        </div>
+                        <div class="item">
+                            <div class="content">
+                                <div th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-1-1</div>
+                            </div>
+                        </div>
+                        <div class="item" >
+                            <i class="eye icon"></i>
+                        </div>
+                        <div class="item">
+                            <div class="content " th:text="${blog.views}">1</div>
+                        </div>
+                    </div>
                     <!--文章结束-->
                 </div>
                 <div class="ui segment">
@@ -129,7 +123,7 @@
                             <div class="comment" th:each="comment : ${comments}">
                                 <a class="avatar">
                                     <img src="../static/images/lillard.png" class="ui avatar image"
-                                         th:src="@{${comment.avatar}}" style="width:50px">
+                                         th:src="${comment.avatar}" style="width:50px">
                                 </a>
                                 <div class="content">
                                     <div class="ui label basic red m-padded-tb-mini" th:if="${comment.admin}">博主</div>
@@ -208,7 +202,7 @@
                                        th:value="${session.user}!=null ?  ${session.user.nickname}">
                             </div>
                             <div class="field m-mobile-wide  m-margin-tb-small">
-                                <input type="text" name="email" placeholder="QQ"
+                                <input type="text" name="email" placeholder="QQ(自动获取头像)"
                                        th:value="${session.user}!=null ?  ${session.user.email}">
                             </div>
                             <div class="field m-mobile-wide  m-margin-tb-small ">
@@ -255,8 +249,6 @@
         </div>
     </div>
 </div>
-<!--    使用grid来布局-->
-
 <div class="m-padded m-fixed m-right-bottom">
     <div class="ui vertical icon buttons">
         <div class="ui toc teal button">目录</div>
@@ -281,7 +273,7 @@
         <!--        把footer的部分分成几个部分总共有十六列-->
         <div class="ui inverted divided stackable grid">
             <div class="three wide column">
-                <img src="../static/images/head.jpg" class="ui rounded iamge" alt="" style="width :110px">
+                <img src="../static/images/head.jpg" class="ui rounded image" alt="" style="width :110px">
             </div>
             <div class="four wide column">
                 <h4 class="ui inverted header  m-text-spaced m-opacity-mini">最新博客</h4>

@@ -43,33 +43,34 @@
     </a>
 </nav>
 <div class="ui attached segment">
-    <div class="ui container">
-        <div class="ui menu left floating">
-            <div class="header item">
-                <i class="tags icon big"></i>
-            </div>
-            <div id="type-button" class="ui floating dropdown link item">
-                <h1 class="m-text-thin" th:text="${type.name}" style="margin: 0">类型</h1>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a href="#"  th:each="t : ${types}" th:href="@{/types/{id}(id=${t.id})}">
-                        <div class="item" th:text="${t.name}">1</div>
-                    </a>
+    <div class="ui grid stackable">
+        <div class="ui container m-padded-tb-small">
+            <div class="ui menu left floating ">
+                <div class="header item">
+                    <i class="tags icon big"></i>
+                </div>
+                <div id="type-button" class="ui floating dropdown link item">
+                    <h1 class="m-text-thin" th:text="${type.name}" style="margin: 0">类型</h1>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#"  th:each="t : ${types}" th:href="@{/types/{id}(id=${t.id})}">
+                            <div class="item" th:text="${t.name}">1</div>
+                        </a>
+                    </div>
                 </div>
             </div>
+            <div class="ui divider"></div>
         </div>
-        <div class="ui basic segment"></div>
-        <div class="ui divider"></div>
         <!--文章-->
-        <div class="ui  m-padded-tb-large ">
+        <div class="ui container m-padded-tb-small ">
             <div class="ui secondary segment   m-padded-tb-mini m-opacity-mini"
                  th:each="blog : ${page.content}">
-                <div class="ui padded large middle aligned stackable mobile reversed grid">
+                <div class="ui padded large middle aligned stackable grid">
                     <!--图片-->
-                    <div class="five wide column m-mobile-hide">
-                        <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                    <div class="five wide column " align="center">
+                        <a href="#" class="ui rounded image" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
                             <img src="https://huaban.com/pins/387544651"
-                                 th:src="@{${blog.firstPicture}}" alt="" style="width:250px;height: 130px">
+                                 th:src="@{${blog.firstPicture}}" alt="" style="width:290px;height: 150px">
                         </a>
                     </div>
                     <!--内容-->
@@ -79,20 +80,13 @@
                                th:text="${tag.name}">求你了别报错</a>
                             <a href="#" class="ui label mini blue"
                                th:text="${blog.type.name}">求你了别报错</a>
-                            <a href="#" class="m-black" th:href="@{/blog/{id}(id=${blog.id})}"
+                            <a href="#" class="ui header m-black" th:href="@{/blog/{id}(id=${blog.id})}"
                                target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
                         </h3>
                         <p class=" m-text-content m-margin-tb-max  " th:text="${blog.proFile}">
                             深度思考就是不断逼近问题的本质.事实上，任何深度思考前的盲目勤奋,注定都是吃力不讨好的徒劳.在碎片化信息爆炸的当下,在竞争激烈的高阶领域,决胜的关键不仅在于知识的多寡,勤奋的程度如何,更在于是否具备深度思考的能力.</p>
                         <!--作者信息-->
                         <div class="ui  horizontal link list ">
-                            <div class="item ">
-                                <i class="user icon "></i>
-                            </div>
-                            <div class="item">
-                                <div class="content"><a href="#" class="  m-black m-text-content  "
-                                                        target="_blank">肖正卿</a></div>
-                            </div>
                             <div class="item">
                                 <i class="clock icon"></i>
                             </div>

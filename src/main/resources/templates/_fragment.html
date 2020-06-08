@@ -20,7 +20,7 @@
 <!--页面中公共部分都可以放在fragment中进行全局替换-->
 
 <!--定义一个fragment menu传参数 ，可以改变当前导航上图标的active-->
-<nav th:fragment="menu(n)"  class="ui segment  m-shadow-small"   style="margin: 0; padding: 0;border: 0"  >
+<nav th:fragment="menu(n)"  class="ui segment  attached"   style="margin: 0;padding: 0"  >
     <div class="ui container m-mobile-hide" th:classappend="${n==1} ? 'inverted' ">
         <div class="ui  secondary stackable menu">
             <!--当n= 1时则在class中添加 active-->
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-        <div class="ui  menu m-desktop-hide" style="margin: -2px;border: 0;padded:0">
+        <div class="ui  menu m-desktop-hide" style="margin: -10px;border: 0;padded:0">
             <div  class="ui  item ">
                 <a href="#" id="side-bar" ><i class=" sidebar icon" style="color: #3b5998"></i></a>
                 <!--导航栏-->
@@ -115,6 +115,8 @@
     <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
     <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
     <script>
+
+        
         //tocbot初始化
         tocbot.init({
             // Where to render the table of contents. 在哪里生成目录 最终显示目录的区域

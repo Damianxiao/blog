@@ -26,8 +26,6 @@ public class Commentcontroller {
     @Autowired
     private blogService blogService;
 
-    @Value("${comment.avatar}")
-    private String avatar;
 
     @GetMapping("/comments/{blogId}")
     public String comments(@PathVariable Long blogId, Model model) {
@@ -46,7 +44,7 @@ public class Commentcontroller {
             comment.setNickname(user.getNickname());
         }
         else{
-            comment.setAvatar(avatar);
+            comment.setAvatar1(comment.getEmail());
         }
         commentService.saveComment(comment);
         return "redirect:/comments/" + blogId;

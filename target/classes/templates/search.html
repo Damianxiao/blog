@@ -21,7 +21,7 @@
         <div class="ui inverted secondary stackable menu">
             <!--  使用h2给定一个标签 teal 是颜色 header样式-->
             <h2 class="ui teal header item ">大狗子的博客</h2>
-                <a href="#" class="m-item item m-mobile-hide"><i class="heart icon"></i>首页</a>
+                <a href="#" clas  s="m-item item m-mobile-hide"><i class="heart icon"></i>首页</a>
                 <a href="#" class="m-item item m-mobile-hide"><i class="box icon"></i>分类</a>
                 <a href="#" class="m-item  active item m-mobile-hide"><i class="tags icon"></i>标签</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
@@ -163,14 +163,18 @@
     </div>
 </footer>
 <!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+<div th:replace="_fragment :: script">
 <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
 <script src="semantic/dist/semantic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</div>
 <!--使用jquery获取,menu.toggle是一个标记，使jQuery能够找到这个button的位置-->
+
 <script>
+
 <!--建立一个click事件当点击的时候执行function-->
     $('.menu.toggle').click(function () {
         $('.m-item').toggleClass('m-mobile-hide');

@@ -9,10 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -29,9 +26,10 @@ public class TagController  {
         public String tags(@PageableDefault(size =10 , sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model){
             model.addAttribute("page",tagService.listTag(pageable));
             tagService.listTag(pageable);
-            return  "/admin/tags";
+            return  "admin/tags";
     }
 
+    @ResponseBody
     @GetMapping("/tags/input")
         public String inputs (Model model){
     //        addattribute往前端传数据

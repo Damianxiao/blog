@@ -100,7 +100,12 @@ public class comment {
     }
 
     public void setAvatar(String avatar) {
-        this.avatar = avatar;
+       this.avatar = avatar;
+    }
+    public void setAvatar1(String email) {
+        StringBuffer buffer =  new StringBuffer("http://q2.qlogo.cn/headimg_dl?dst_uin=QQ&spec=5");
+        buffer.replace(38,40,email);
+        this.avatar = buffer.toString();
     }
 
     public void setCreateTime(Date createTime) {

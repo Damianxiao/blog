@@ -4,7 +4,7 @@
 <title>首页</title>
 <head th:replace="_fragment  :: head(~{ ::title})">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=none">
     <title>博客详情</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
@@ -37,7 +37,7 @@
     </a>
 </nav>
 <!--首页图片-->
-<div class="m-back-pic animated slideInUp stackable" style="width: auto;height: 600px;margin: -2px;padding: 0;border: 0;">
+<div class="m-back-pic  stackable" style="height: 700px;margin: 0">
     <img th:src="@{/images/indexpicture.jpg}" src="https://w.wallhaven.cc/full/2e/wallhaven-2e8e8m.jpg" alt=""
          class="ui m-background image"
          style="width: 100%;height: 100%">
@@ -45,24 +45,25 @@
         <div class="ui basic segment">
         </div>
         <div class="ui basic segment"></div>
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment" ></div>
         <div class="ui basic segment" align="right">
             <h1 class="m-white m-text-title m-text-thin" style="margin: 0">大狗的博客</h1>
         </div>
         <div class="ui basic segment"></div>
-        <div class="ui basic segment"></div>
-        <div class="ui basic segment" align="center">
-            <button id="angle-button" class="ui circular facebook icon button">
+        <div class="ui basic segment" ></div>
+        <div class="ui basic segment animated bounceInUp" align="center">
+            <button id="angle-button" class="ui circular facebook icon button ">
                 <i class=" angle down icon big"></i>
             </button>
         </div>
+        <div class="ui basic segment"></div>
+        <div class="ui basic segment"></div>
+
     </div>
 </div>
 <!--中间内容-->
-<div class="m-padded-tb-large">
+<div id="page-content" class="m-padded-tb-small">
     <div class="ui container ">
-        <div id="page-content" class="ui stackable grid">
+        <div  class="ui stackable grid">
             <!--左边的文章内容区-->
             <div class="twelve wide column">
                 <div class="ui vertical segment ">
@@ -80,34 +81,28 @@
                     <div class="ui m-container-small m-padded-tb-large ">
                         <div class="ui secondary segment   m-padded-tb-mini m-opacity-mini"
                              th:each="blog : ${page.content}">
-                            <div class="ui padded large middle aligned stackable mobile reversed grid">
+                            <div class="ui padded large middle aligned stackable grid">
                                 <!--图片-->
-                                <div class="five wide column m-mobile-hide">
-                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                <div class="five wide column " align="center">
+                                    <a href="#" class="ui rounded image" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
                                         <img src="https://huaban.com/pins/387544651"
-                                             th:src="@{${blog.firstPicture}}" alt="" style="width:220px;height: 130px">
+                                             th:src="@{${blog.firstPicture}}" alt="" style="width:280px;height: 150px">
                                     </a>
                                 </div>
                                 <!--内容-->
                                 <div class="eleven wide column">
                                     <h3 class="ui header ">
-                                        <a href="#" class="ui label mini red" th:each="tag : ${blog.tags}"
+                                        <a href="#" class="ui label  red" th:each="tag : ${blog.tags}"
                                            th:text="${tag.name}">求你了别报错</a>
-                                        <a href="#" class="ui label mini blue"
+                                        <a href="#" class="ui label  blue"
                                            th:text="${blog.type.name}">求你了别报错</a>
-                                        <a href="#" class="m-black" th:href="@{/blog/{id}(id=${blog.id})}"
+                                        <a href="#" class="ui header m-black" th:href="@{/blog/{id}(id=${blog.id})}"
                                            target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
                                     </h3>
                                     <p class=" m-text-content m-margin-tb-max  " th:text="${blog.proFile}">
                                         深度思考就是不断逼近问题的本质.事实上，任何深度思考前的盲目勤奋,注定都是吃力不讨好的徒劳.在碎片化信息爆炸的当下,在竞争激烈的高阶领域,决胜的关键不仅在于知识的多寡,勤奋的程度如何,更在于是否具备深度思考的能力.</p>
                                     <!--作者信息-->
                                     <div class="ui  horizontal link list ">
-                                        <div class="item ">
-                                            <i class="user icon "></i>
-                                        </div>
-                                        <div class="item">
-                                            <div class="content"><a href="#" th:href="@{/about}" class="  m-black m-text-content  ">肖正卿</a></div>
-                                        </div>
                                         <div class="item">
                                             <i class="clock icon"></i>
                                         </div>

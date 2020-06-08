@@ -133,10 +133,12 @@
     </div>
 </footer>
 <!--<&#45;&#45;引入semantic ui 框架&ndash;&gt;-->
+<div th:fragment="script">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="semantic/dist/semantic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <!--使用jquery获取,menu.toggle是一个标记，使jQuery能够找到这个button的位置-->
+</div>
 <script>
 <!--建立一个click事件当点击的时候执行function-->
     $('.menu.toggle').click(function () {
