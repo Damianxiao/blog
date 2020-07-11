@@ -203,6 +203,10 @@ body{
     font-weight: 800 !important;
 }
 
+.m-text-username{
+    font-size: 20px;
+}
+
 
 
 /*position*/
@@ -214,6 +218,12 @@ body{
 
 
 /*让组件浮在表层*/
+
+.m-fix{
+    position: fixed;
+    transform: inherit;
+}
+
 .m-fixed{
     position: fixed !important;
     z-index: 1 !important;

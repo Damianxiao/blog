@@ -137,7 +137,7 @@
                             <br>欢迎访问!
                         </div>
                         <div class="ui divider"></div>
-                        <div class="content m-text-italic">最后更新于 : 2020-6-5</div>
+                        <div class="content m-text-italic">最后更新于 : 2020-7-11</div>
                     </div>
                 </div>
                 <div class="ui container">
@@ -195,23 +195,26 @@
                             <div class="ui divider"></div>
                         </div>
                         <div class="comment" th:each="comment,iterStat : ${comments}" th:if="${iterStat.count<8}">
-                            <div class="ui horizontal link list ">
-                                <div class="item">
-                                    <img src="../static/images/lillard.png" class="ui avatar image"
-                                         th:src="@{${comment.avatar}}">
-                                </div>
-                                <div class="item">
-                                    <div class="m-text-content m-teal " th:if="${comment.admin}"> 博主</div>
-                                </div>
-                                <div class="item">
-                                    <div class="m-text-content m-black" th:text="${comment.nickname}"
-                                         th:unless="${comment.admin}">Matt
+                            <div class="ui  segment">
+                                <div class="ui horizontal link list ">
+                                    <div class="item" >
+                                        <avatar>
+                                            <img src="../static/images/lillard.png" class="ui avatar image larger"
+                                                 th:src="@{${comment.avatar}}">
+                                        </avatar>
+                                        <span class="m-text-username m-black " th:text="${comment.nickname}"
+                                              th:unless="${comment.admin}">Matt
+                                    </span>
+                                    </div>
+                                    <div class="item">
+                                        <div class="m-text-content m-teal " th:if="${comment.admin}"> 博主</div>
+                                    </div>
+                                    <div class="item">
+                                        说：<span class="m-text-content m-black" th:text="${comment.content}">太赞了！</span>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="m-black" th:text="${comment.content}">太赞了！</div>
-                                </div>
                             </div>
+
                             <div class="ui divider"></div>
                         </div>
                     </div>

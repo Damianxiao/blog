@@ -29,7 +29,6 @@ public class TagController  {
             return  "admin/tags";
     }
 
-    @ResponseBody
     @GetMapping("/tags/input")
         public String inputs (Model model){
     //        addattribute往前端传数据
