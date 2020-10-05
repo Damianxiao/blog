@@ -92,11 +92,11 @@
                                 <!--内容-->
                                 <div class="eleven wide column">
                                     <h3 class="ui header ">
-                                        <a href="#" class="ui label  red" th:each="tag : ${blog.tags}"
+                                        <a href="#" th:href="@{/types/14}" class="ui label  mini red" th:each="tag : ${blog.tags}"
                                            th:text="${tag.name}">求你了别报错</a>
-                                        <a href="#" class="ui label  blue"
+                                        <a href="#" th:href="@{/types/14}" class="ui label  mini blue"
                                            th:text="${blog.type.name}">求你了别报错</a>
-                                        <a href="#" class="ui header m-black" th:href="@{/blog/{id}(id=${blog.id})}"
+                                        <a href="#"   class="ui header m-black" th:href="@{/blog/{id}(id=${blog.id})}"
                                            target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
                                     </h3>
                                     <p class=" m-text-content m-margin-tb-max  " th:text="${blog.proFile}">
@@ -131,7 +131,7 @@
             <div class="four wide column  m-opacity-mini ">
                 <div class="ui container  m-padded-tb-small">
                     <div class="ui segment">
-                        <div class="ui blue ribbon label"><i class="send icon"></i>通知</div>
+                        <div class="ui blue ribbon label">通知</div>
                         <div class="m-text-content">
                             本博客将由博主长期维护更新
                             <br>欢迎访问!
@@ -142,30 +142,30 @@
                 </div>
                 <div class="ui container">
                     <div class="ui segment">
-                        <div class="ui teal ribbon label"><i class="tags icon"></i>文章分类</div>
+                        <div class="ui teal ribbon label">分类目录</div>
                         <div class="ui segments">
                             <div class="ui segment padding fluid" th:each="type : ${types}">
                                 <li>
-                                    <a href="#" target="_blank" th:href="@{/types/{id}(id=${type.id})}" th:text="${type.name}" class="m-text-content  m-teal">随笔</a>
+                                    <a href="#" target="_blank" th:href="@{/types/{id}(id=${type.id})}" th:text="${type.name}" class="m-text-thick">随笔</a>
                                     <!--这里使用type中含有的blog对象，用arrayslength 取数组长度拿到文章的篇数-->
-                                    <span class="m-text-content" th:text="${#arrays.length(type.blogs)}">1</span><span
-                                        class="m-text-content">篇</span>
+                                    (<span class="" th:text="${#arrays.length(type.blogs)}">1</span><span
+                                        class="">)</span>
                                 </li>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="ui container m-padded-tb-small">
-                    <div class="ui secondary attached segment">
-                        <div class="ui red ribbon label"><i class="star icon"></i>最新动态</div>
-                    </div>
                     <div class="ui attached segment">
+                        <div class="ui red ribbon label">最新动态</div>
                         <div class="ui attached segments">
                             <div class="ui segment" th:each="blog,iterStat : ${page.content}"
                                  th:if="${iterStat.count<6}">
-                                <div class="ui circular label blue mini" th:text="${iterStat.count}">1</div>
-                                <a href="#" class=" m-black m-text-content" th:href="@{/blog/{id}(id=${blog.id})}"
-                                   target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>
+                                <li>
+                                    <a href="#" class=" m-black m-text-thick" th:href="@{/blog/{id}(id=${blog.id})}"
+                                       target="_blank" th:text="${#strings.abbreviate(blog.title,15)}">深度思考：不断逼近问题的本质</a>
+                                </li>
+
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                 <div class="m-padded-tb-small ">
                     <div class="ui container">
                     <div class="ui  segment">
-                        <div class="ui teal ribbon label"><i class="comment icon"></i>最近评论(感谢留言!)</div>
+                        <div class="ui teal ribbon label">最新评论</div>
                         <div class="ui link list">
                             <div class="item"></div>
                         </div>
@@ -183,13 +183,10 @@
                                     <img th:href="@{https://s1.ax1x.com/2020/05/25/tCYPz9.jpg}" src="https://s1.ax1x.com/2020/05/25/tCYPz9.jpg" class="ui avatar image">
                                 </div>
                                 <div class="item">
-                                    <div class="m-text-content m-teal"> 博主</div>
+                                    <div class=" m-teal" style="font-size: 18px;padding:1px;margin-bottom:0"> A大狗</div>
                                 </div>
                                 <div class="item">
-                                    <div class="ui label red small" th:text="置顶" >置顶</div>
-                                </div>
-                                <div class="item">
-                                    <div class="m-black m-text-content" th:text="谢谢留言！">谢谢留言！</div>
+                                    <div class="m-black " th:text="谢谢留言！">感谢留言！</div>
                                 </div>
                             </div>
                             <div class="ui divider"></div>
@@ -197,24 +194,25 @@
                         <div class="comment" th:each="comment,iterStat : ${comments}" th:if="${iterStat.count<8}">
                             <div class="ui  segment">
                                 <div class="ui horizontal link list ">
-                                    <div class="item" >
-                                        <avatar>
-                                            <img src="../static/images/lillard.png" class="ui avatar image larger"
-                                                 th:src="@{${comment.avatar}}">
-                                        </avatar>
-                                        <span class="m-text-username m-black " th:text="${comment.nickname}"
-                                              th:unless="${comment.admin}">Matt
-                                    </span>
+                                    <div class="ui basic segment" style="padding: 0;margin: 0;">
+                                        <div class="item" >
+                                            <avatar>
+                                                <img src="../static/images/lillard.png" class="ui avatar image larger"
+                                                     th:src="@{${comment.avatar}}">
+                                            </avatar>
+                                            <span class=" m-black " style="font-size: 18px;padding:1px;margin-bottom:0"  th:text="${comment.nickname}"
+                                                  th:unless="${comment.admin}">Matt
+                                            </span>
+                                                <span class=" m-teal " th:if="${comment.admin}" style="font-size: 18px;padding:1px;margin-bottom:0"> A大狗</span>
+                                            <span th:text="${#dates.format(comment.createTime,'MM-dd')}" style="padding-left: 50px">11:11</span>
+                                        </div>
                                     </div>
-                                    <div class="item">
-                                        <div class="m-text-content m-teal " th:if="${comment.admin}"> 博主</div>
-                                    </div>
-                                    <div class="item">
-                                        说：<span class="m-text-content m-black" th:text="${comment.content}">太赞了！</span>
+                                    <div class="ui basic segment" style="padding: 0;margin: 4px;">
+                                        <div class="item">说: <span class="m-text-spaced m-black"  style="font-weight: 400" th:text="${comment.content}">太赞了！</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="ui divider"></div>
                         </div>
                     </div>

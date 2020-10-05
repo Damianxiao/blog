@@ -76,9 +76,9 @@
                     <!--内容-->
                     <div class="eleven wide column">
                         <h3 class="ui header ">
-                            <a href="#" class="ui label mini red" th:each="tag : ${blog.tags}"
+                            <a href="#" th:href="@{/types/14}" class="ui label mini red" th:each="tag : ${blog.tags}"
                                th:text="${tag.name}">求你了别报错</a>
-                            <a href="#" class="ui label mini blue"
+                            <a href="#" th:href="@{/types/14}" class="ui label mini blue"
                                th:text="${blog.type.name}">求你了别报错</a>
                             <a href="#" class="ui header m-black" th:href="@{/blog/{id}(id=${blog.id})}"
                                target="_blank" th:text="${blog.title}">深度思考：不断逼近问题的本质</a>

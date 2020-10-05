@@ -1,3 +1,4 @@
+/*全局字体设置*/
 body{
     background-attachment:fixed;
     background-size: 100%;
@@ -27,8 +28,8 @@ body{
 }
 
 .m-background{
-    object-fit: cover;
-}
+     object-fit: cover;
+ }
 
 .m-back-pic {
     display: block;
@@ -255,6 +256,7 @@ body{
 
 
 .m-black{
+    font-size: 15px;
     color:  #333333  !important;
  }
 
